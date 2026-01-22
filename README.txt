@@ -1,4 +1,4 @@
-# Larva Crawling Kinematics (Extensible 4-Bar Model)
+#Larva Crawling Kinematics (Extensible 4-Bar Model)
 
 This repository implements a reduced-order **planar kinematic model** of *Drosophila* larva crawling, based on an **extensible 4-bar mechanism** whose links are modeled as springs (muscle analogs). The pipeline supports:
 
@@ -56,3 +56,4 @@ Typical roles of the key files:
    ```bash
    git clone https://github.com/DulanjanaPerera/Larva-crawling-kinematics.git
    cd Larva-crawling-kinematics
+
