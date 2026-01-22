@@ -21,23 +21,24 @@ Typical roles of the key files:
 - **`optimization_model_prediction.m`**  
   Inverse kinematics and parameter identification using constrained optimization (tracking + closure + energy terms).
 
-- **`process_data_and_fit_spline.m`**  
-  Data cleaning and spline fitting to smooth tracked trajectories prior to optimization.
-
 - **`update_simulink_parameters.m`**  
   Interface between MATLAB optimization outputs and Simulink/Simscape model parameters.
 
-- **`larva_simulation.slx`**  
-  Simscape Multibody model for visualization and kinematic validation.
+- **`robotic_larva_simscape.slx`**  
+  Simscape Multibody model for visualization and kinematic validation. The SolidWorks folder has to be in the same folder.
 
-- **`drosophila_data.mat`**  
-  Example dataset containing tracked larval motion data.
-
-- **`test_traj.m`**  
-  Script for generating or validating reference trajectories.
-
-- **`figure_generation.m`**  
+- **`plotting_gait_muscle.m`**  
   Utilities for reproducing plots and analysis figures.
+
+- **`linesFor4barmechanism.m`**
+  The script to draw the 4-bar mechanism for given lengths and angles.
+
+- **`shadedErrorBar.m`**
+  The script that draw the shaded error bar
+  *Rob Campbell (2026). raacampbell/shadedErrorBar (https://github.com/raacampbell/shadedErrorBar), GitHub. Retrieved January 22, 2026.*
+  
+- **`structureAngles.m`**
+  Compute the angles of the 4-bar mechanism for given lengths.
 
 ---
 
