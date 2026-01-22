@@ -1,6 +1,6 @@
 # Larva Crawling Kinematics (Extensible 4-Bar Model)
 
-This repository implements a reduced-order **planar kinematic model** of *Drosophila* larva crawling, based on an **extensible 4-bar mechanism** whose links are modeled as springs (muscle analogs). The pipeline supports:
+This repository implements a reduced-order **planar kinematic model** of *Drosophila* larva crawling, based on an **extensible 4-bar mechanism** whose links are modeled as springs (muscle analogs). The manuscript is under-review. The pipeline supports:
 
 - Forward kinematics of the protopodium point from spring lengths  
 - Inverse kinematics via constrained optimization to match measured trajectories  
@@ -63,7 +63,7 @@ Typical roles of the key files:
 # Modeling overview
 ## Forward kinematics
 
-Each larva body segment is modeled as an extensible planar 4-bar mechanism whose links represent muscle elements. The configuration of a segment is parameterized by the vector of spring (muscle) lengths:
+Each larva body segment is modeled as an extensible planar 4-bar mechanism whose links represent muscle elements. The configuration of a segment is parameterized by the vector of spring (muscle) lengths and the angle of the spring 2 represents the VL:
 
 `l = [l1, l2, l3, l4, l5]`
 
@@ -71,7 +71,7 @@ Each larva body segment is modeled as an extensible planar 4-bar mechanism whose
 where:
 
 - l1–l4 correspond to the primary muscle elements, and 
-- l5 is an auxiliary element used to compute internal trapezoidal angles.
+- l5 is the angle of the Ventral Longitudinal (VL).
 
 Two forward kinematic mappings are constructed by traversing the kinematic chain in opposite directions to compute the position of the protopodium point. A closure constraint enforces consistency between these two mappings, ensuring that the mechanism forms a valid closed chain.
 
