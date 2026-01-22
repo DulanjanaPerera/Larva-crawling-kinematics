@@ -1,4 +1,4 @@
-#Larva Crawling Kinematics (Extensible 4-Bar Model)
+# Larva Crawling Kinematics (Extensible 4-Bar Model)
 
 This repository implements a reduced-order **planar kinematic model** of *Drosophila* larva crawling, based on an **extensible 4-bar mechanism** whose links are modeled as springs (muscle analogs). The pipeline supports:
 
@@ -57,3 +57,42 @@ Typical roles of the key files:
    git clone https://github.com/DulanjanaPerera/Larva-crawling-kinematics.git
    cd Larva-crawling-kinematics
 
+---
+
+# Modeling overview
+## Forward kinematics
+
+Each larva body segment is modeled as an extensible planar 4-bar mechanism whose links represent muscle elements. The configuration of a segment is parameterized by the vector of spring (muscle) lengths:
+
+l = [l1, l2, l3, l4, l5]
+
+
+where:
+
+- l1–l4 correspond to the primary muscle elements, and 
+- l5 is an auxiliary element used to compute internal trapezoidal angles.
+
+Two forward kinematic mappings are constructed by traversing the kinematic chain in opposite directions to compute the position of the protopodium point. A closure constraint enforces consistency between these two mappings, ensuring that the mechanism forms a valid closed chain.
+
+## Inverse kinematics via optimization
+
+Because this extensible 4-bar mechanism does not admit a closed-form inverse kinematic solution, the inverse problem is solved using *constrained nonlinear optimization*.
+
+At each time step, muscle lengths are estimated by minimizing a cost function composed of three terms:
+
+- Closure consistency
+  Penalizes mismatch between the two forward kinematic paths.
+
+- Trajectory tracking error
+  Penalizes deviation between the predicted protopodium position and the experimentally measured trajectory.
+
+- Elastic energy regularization
+  Penalizes large deviations from nominal muscle lengths.
+
+The optimization is solved subject to physiologically feasible bounds on muscle lengths, which are obtained from experimental imaging data.
+
+## Full-body crawling via segment delay
+
+Rather than solving inverse kinematics independently for each body segment, a *single-segment solutio*n is propagated along the body using a *transport delay*. This delay introduces a phase shift between adjacent segments, producing a peristaltic crawling wave along the larva body.
+
+This approach significantly reduces computational cost while preserving realistic crawling kinematics.
